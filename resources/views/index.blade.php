@@ -3,7 +3,6 @@
 @section('title', 'My list of tasks')
 
 @section('content')
-    {{-- @if (count($tasks)) --}}
     @forelse ($tasks as $task)
         <div>
             <a href="{{route('tasks.show', ['task' => $task->id])}}">{{$task->title}}</a>
@@ -11,5 +10,11 @@
     @empty
         <div>There are not tasks!</div>
     @endforelse
-    {{-- @endif --}}
+
+    @if ($tasks->count())
+        <nav>
+            {{$tasks->links()}}
+        </nav>
+    @endif
+
 @endsection
